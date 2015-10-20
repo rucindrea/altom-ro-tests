@@ -15,5 +15,5 @@ test:
   post:
     - mkdir -p $CIRCLE_TEST_REPORTS/junit/
     - find . -type f -regex ".*/**/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
-    - find . -type f -regex ".*/**/.*png" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
+    - find . -type f -regex "test_results/screenshots/*.png" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
     - junit-viewer --results=$CIRCLE_TEST_REPORTS/junit/ --save=$CIRCLE_TEST_REPORTS/junit/results.html
