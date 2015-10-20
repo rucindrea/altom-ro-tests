@@ -53,6 +53,7 @@ class AltomTest(unittest.TestCase):
                 print e.message
                 if r == retries - 1:
                     print "ERROR: failed to take screenshot"
+        print "screenshot saved with file name: %s" %name
         return name
 
 
