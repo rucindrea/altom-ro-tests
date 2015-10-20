@@ -1,0 +1,19 @@
+machine:
+   python:
+        version: 2.7
+
+dependencies:
+  pre:
+    - pip install selenium docopt pyyaml
+#    - git clone https://github.com/spotify/python-graphwalker && cd python-graphwalker && python setup.py install && cd ..
+    - npm install junit-viewer -g
+
+test:
+  override:
+    - nosetests --with-xunit --xunit-file=test_results/results.xml tests/
+
+  post:
+    - mkdir -p $CIRCLE_TEST_REPORTS/junit/
+    - find . -type f -regex ".*/test_results/**/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
+    - find . -type f -regex ".*/test_runs/**/.*png" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
+    - junit-viewer --results=$CIRCLE_TEST_REPORTS/junit/ --save=$CIRCLE_TEST_REPORTS/junit/results.html

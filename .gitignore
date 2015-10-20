@@ -1,0 +1,4 @@
+*.pyc
+.idea
+tests_results
+test_results
